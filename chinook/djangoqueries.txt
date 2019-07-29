@@ -1,0 +1,30 @@
+#1 Find the albums recorded by the artist Queen.
+ANSWER: Album.objects.filter(artist__name='Queen')
+
+#2 Count how many tracks belong to the media type "Protected MPEG-4 video file".
+ANSWER: Track.objects.filter(media_type__name="Protected Mpeg-4 video file").count()
+
+#3 Find the genre with the name "Hip Hop/Rap".
+ANSWER: Genre.objects.get(name="Hip Hop/Rap")
+
+#4 Count how many tracks belong to the "Hip Hop/Rap" genre
+ANSWER: Track.objects.filter(genre__name='Hip Hop/Rap').count()
+
+#5 Find the total amount of time required to listen to all the tracks in the database.
+ANSWER: Track.objects.aggregate(Sum('milliseconds'))
+
+#6 Find the highest price of any track that has the media type "MPEG audio file".
+ANSWER: Track.objects.filter(media_type__name='MPEG audio file').aggregate(Max('unit_price'))
+
+#7 Find the name of the most expensive track that has the media type "MPEG audio file".
+ANSWER: Track.objects.filter(unit_price=(Track.objects.filter(media_type__name='MPEG audio file').aggregate(Max('unit_price'))['unit_price__max']))[0].name
+
+#8 Find the 2 oldest artists.
+ANSWER: Artist.objects.order_by('created_at')[0].created_at
+        Artist.objects.order_by('created_at')[1].created_at
+
+#9 Find the least expensive track that has the genre "Electronica/Dance".
+ANSWER: Track.objects.filter(genre__name='Electronica/Dance').aggregate(Min('unit_price'))
+
+#10 Find all "MPEG audio file" tracks in the genre "Electronica/Dance".
+ANSWER: Track.objects.filter(media_type__name='MPEG audio file').filter(genre__name='Electronica/Dance')
