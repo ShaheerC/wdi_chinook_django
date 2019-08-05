@@ -1,0 +1,20 @@
+#1 Find the album titled "Vinicius De Moraes", and then use the relationship-provided method to find all its tracks.
+Album.objects.get(title = 'Vinicius De Moraes').tracks.all()
+
+#2 Find the artist called "Philip Glass Ensemble", and then use an relationship-provided method to find all their albums.
+Artist.objects.get(name = 'Philip Glass Ensemble').album.all()
+
+#3 Find the "Brazilian Music" playlist and then use an relationship-provided method to find all its tracks.
+Playlist.objects.get(name = 'Brazilian Music').tracks.all()
+
+#4 Find the "Jazz" genre and then use an relationship-provided method to find all its tracks.
+Genre.objects.get(name = 'Jazz').tracks.all()
+
+#5 Find the track "My Time After Awhile" and then use the track/genre relationship to find its genre.
+Track.objects.get(name = 'My Time After Awhile').genre
+
+#6 Now find the media type of that same track.
+Track.objects.get(name = 'My Time After Awhile').media_type
+
+#7 And finally, find the album that track appears on.
+Track.objects.get(name = 'My Time After Awhile').album
